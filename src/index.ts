@@ -41,7 +41,7 @@ let updateMessage = async() => {
                             .map((x: Friend) => `${x.FriendUsername}: ${x.UserStatus.OnlineStatus}@${x.UserStatus.CurrentSession?.Name ?? "Private"} (${x.UserStatus.OutputDevice})`)
                             .join('\n');
     message.edit(`**ONLINE LIST** (edited: <t:${Math.floor(Date.now()/1000)}:R> )\n` + newmessage);
-    fs.closeSync(fs.openSync(livenessPath, 'w'))
+    fs.closeSync(fs.openSync(livenessPath, 'a'))
 }
 
 let main = async () => {
