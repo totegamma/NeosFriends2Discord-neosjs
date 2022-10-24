@@ -1,6 +1,9 @@
 import { v4 } from 'uuid'
 import { Message, Client, TextChannel } from 'discord.js'
 import { CloudXInterface, Friend } from "@bombitmanbomb/cloudx"
+import fs from 'fs'
+
+const livenessPath = '/tmp/healthy'
 
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN ?? "";
 const NEOS_USERNAME = process.env.NEOS_USERNAME ?? "";
@@ -38,6 +41,7 @@ let updateMessage = async() => {
                             .map((x: Friend) => `${x.FriendUsername}: ${x.UserStatus.OnlineStatus}@${x.UserStatus.CurrentSession?.Name ?? "Private"} (${x.UserStatus.OutputDevice})`)
                             .join('\n');
     message.edit(`**ONLINE LIST** (edited: <t:${Math.floor(Date.now()/1000)}:R> )\n` + newmessage);
+    fs.closeSync(fs.openSync(livenessPath, 'w'))
 }
 
 let main = async () => {

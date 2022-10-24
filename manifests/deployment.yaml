@@ -18,4 +18,11 @@ spec:
         envFrom:
           - secretRef:
               name: nf2d-secrets
+        livenessProbe:
+          exec:
+            command:
+              - rm
+              - /tmp/healthy
+            initialDelaySeconds: 30
+            periodSeconds: 120
 
