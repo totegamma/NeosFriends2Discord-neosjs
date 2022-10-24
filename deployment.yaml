@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neos-friends-2-discord
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: neos-friends-2-discord
+  template:
+    metadata:
+      labels:
+        name: neos-friends-2-discord
+    spec:
+      containers:
+      - name: neos-hdl-users-2-discord
+        image: ghcr.io/totegamma/neosfriends2discord:master
+        envFrom:
+          - secretRef:
+              name: nf2d-secrets
+
