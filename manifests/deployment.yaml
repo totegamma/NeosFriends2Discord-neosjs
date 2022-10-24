@@ -15,6 +15,7 @@ spec:
       containers:
       - name: neos-hdl-users-2-discord
         image: ghcr.io/totegamma/neosfriends2discord:master
+        imagePullPolicy: Always
         envFrom:
           - secretRef:
               name: nf2d-secrets
