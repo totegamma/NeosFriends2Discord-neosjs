@@ -30,7 +30,9 @@ discord.once('ready', async () => {
 
 
 let updateMessage = async() => {
-    let friends = (await cloudx.GetFriends()).Content as Friend[];
+    let response = await cloudx.GetFriends();
+    if (response.IsError) return;
+    let friends = response.Content as Friend[];
 
     // Accept Friend Requests
     let pending =  friends.filter((x: Friend) => x.FriendStatus == 'Requested');
